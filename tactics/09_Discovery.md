@@ -1,10 +1,10 @@
 ---
 tags:
   - ATTACK/Discovery
-  - Sysmon
-  - WindowsSecurity
   - Surface/Process
   - Surface/Network
+  - Telemetry/Sysmon
+  - Telemetry/WindowsEvent
 ---
 
 # Discovery (TA0007)
@@ -55,52 +55,17 @@ Listing network connections, ports, and sessions on the endpoint.
 
 ### Behavioral Patterns
 - Reconnaissance → multiple discovery commands → credential or lateral movement attempt  
-- Enumeration from non-admin accounts or normal user workstations  
+- Enumeration from non-admin accounts or normal user workstations 
 - Discovery run from odd parent processes (e.g., Office, browser)
 
 ---
 
 ## Starter Splunk Queries
 
-### 1. Classic Windows Discovery Commands (Sysmon Process Creation)
-```
-index=sysmon EventCode=1 earliest=-1h
-| search Image="*\net.exe" OR Image="*\nltest.exe" OR Image="*\ipconfig.exe" 
-        OR Image="*\wmic.exe" OR Image="*\whoami.exe"
-| table _time host Image ParentImage CommandLine User
-```
-Purpose: Detects most built-in Windows discovery commands.
-
----
-
-### 2. PowerShell Discovery Activity
-```
-index=powershell earliest=-1h
-| search ScriptBlockText="*Get-AD*" OR ScriptBlockText="*Get-WmiObject*" 
-        OR ScriptBlockText="*Get-NetIPAddress*" OR ScriptBlockText="*Get-Process*"
-| table _time host User ScriptBlockText
-```
-Purpose: Identifies PowerShell-based domain and system enumeration.
-
----
-
-### 3. Internal Host Enumeration (Sysmon Network)
-```
-index=sysmon EventCode=3 earliest=-1h
-| stats dc(DestinationIp) as unique_targets by host, Image
-| where unique_targets > 5
-```
-Purpose: Captures processes querying multiple internal hosts.
-
----
-
-### 4. Domain Controller and Trust Enumeration (Sysmon Process Creation)
-```
-index=sysmon EventCode=1 earliest=-1h
-| search CommandLine="*nltest*" OR CommandLine="*/dclist*" OR CommandLine="*/domain_trusts*"
-| table _time host Image CommandLine User
-```
-Purpose: Detects enumeration of domain controllers or domain trusts.
+- [Classic Windows Discovery Commands](../queries/starter/windows_discovery_commands.md)
+- [PowerShell Discovery Activity](../queries/starter/powershell_discovery_activity.md)
+- [Internal Host Enumeration](../queries/starter/internal_host_enumeration.md)
+- [Domain Controller and Trust Enumeration](../queries/starter/domain_controller_enumeration.md)
 
 ---
 

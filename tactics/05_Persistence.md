@@ -1,11 +1,11 @@
 ---
 tags:
   - ATTACK/Persistence
-  - Sysmon
-  - WindowsSecurity
   - Surface/Registry
   - Surface/Process
   - Surface/File
+  - Telemetry/Sysmon
+  - Telemetry/WindowsEvent
 ---
 
 # Persistence (TA0003)
@@ -66,42 +66,10 @@ Abusing Windows services or installing new ones pointing to attacker binaries.
 
 ## Starter Splunk Queries
 
-### 1. Registry Run Keys (Sysmon Registry Events)
-```
-index=sysmon EventCode=13 earliest=-1h
-| search registry_key_path="*\Run*" OR registry_key_path="*\RunOnce*" 
-| table _time host Image registry_key_path Details User
-```
-Purpose: Detects persistence through autorun registry keys.
-
----
-
-### 2. Startup Folder Modifications (Sysmon File Events)
-```
-index=sysmon EventCode=11 earliest=-1h
-| search TargetFilename="*\Startup\*" 
-        OR TargetFilename="*AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup*"
-| table _time host Image TargetFilename User
-```
-Purpose: Identifies files placed in user startup locations.
-
----
-
-### 3. Service Creation (Windows Security Event)
-```
-index=windows EventCode=4697 earliest=-1h
-| table _time host ServiceName ServiceFileName Account_Name
-```
-Purpose: Monitors for potential malicious service installs.
-
----
-
-### 4. Scheduled Tasks Created (Windows Security Event)
-```
-index=windows EventCode=4698 earliest=-1h
-| table _time host TaskName Author
-```
-Purpose: Detects new scheduled tasks created for persistence.
+- [Registry Run Keys](../queries/starter/registry_run_keys.md)
+- [Startup Folder Modifications](../queries/starter/startup_folder_modifications.md)
+- [Windows Service Creation](../queries/starter/windows_service_creation.md)
+- [Scheduled Tasks Created](../queries/starter/scheduled_tasks_created.md)
 
 ---
 

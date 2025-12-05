@@ -1,11 +1,11 @@
 ---
 tags:
   - ATTACK/Collection
-  - Sysmon
-  - WindowsSecurity
   - Surface/Network
   - Surface/File
   - Surface/Process
+  - Telemetry/Sysmon
+  - Telemetry/WindowsEvent
 ---
 
 # Collection (TA0009)
@@ -65,35 +65,10 @@ Copying data from local file systems (Documents, Desktop, Downloads, application
 
 ## Starter Splunk Queries
 
-### 1. Archive Creation Detected by Sysmon
-```
-index=sysmon EventCode=11 earliest=-1h
-| search TargetFilename="*.zip" OR TargetFilename="*.7z" OR TargetFilename="*.rar"
-| table _time host Image TargetFilename User
-```
-
-### 2. High-Volume File Writes by a Single Process
-```
-index=sysmon EventCode=11 earliest=-1h
-| stats count by host, Image, User
-| where count > 50
-| sort - count
-```
-
-### 3. PowerShell-Based File Enumeration and Copy
-```
-index=powershell earliest=-1h
-| search ScriptBlockText="*Get-ChildItem*" OR ScriptBlockText="*Copy-Item*" 
-        OR ScriptBlockText="*Get-Content*"
-| table _time host User ScriptBlockText
-```
-
-### 4. Access to Common User Data Locations
-```
-index=sysmon EventCode=11 earliest=-1h
-| search TargetFilename="*Documents*" OR TargetFilename="*Desktop*" OR TargetFilename="*Downloads*"
-| table _time host Image TargetFilename User
-```
+- [Archive Creation Detected](../queries/starter/archive_creation.md)
+- [High-Volume File Writes by a Single Process](../queries/starter/process_file_writes.md)
+- [PowerShell-Based File Enumeration and Copy](../queries/starter/powershell_file_enumeration.md)
+- [Access to Common User Data Locations](../queries/starter/access_user_data.md)
 
 ---
 

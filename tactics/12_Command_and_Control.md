@@ -1,11 +1,11 @@
 ---
 tags:
   - ATTACK/CommandAndControl
-  - Sysmon
-  - Suricata
-  - pfSense
   - Surface/Network
   - Surface/Process
+  - Telemetry/Sysmon
+  - Telemetry/Suricata
+  - Telemetry/pfSense
 ---
 
 # Command and Control (TA0011)
@@ -67,34 +67,10 @@ Sending tools/payloads over the active C2 channel.
 
 ## Starter Splunk Queries
 
-### 1. Outbound Connections to Non-Lab IPs (Sysmon Network Events)
-```
-index=sysmon EventCode=3 earliest=-1h
-| search DestinationIp!="10.10.*"
-| table _time host Image DestinationIp DestinationPort
-```
-
-### 2. PowerShell-Based HTTP/HTTPS Callbacks
-```
-index=powershell earliest=-1h
-| search ScriptBlockText="*Invoke-WebRequest*" OR ScriptBlockText="*Invoke-RestMethod*"
-| table _time host User ScriptBlockText
-```
-
-### 3. Beaconing Behavior (Periodic Connections)
-```
-index=sysmon EventCode=3 earliest=-1h
-| bin _time span=1m
-| stats count by _time, DestinationIp, DestinationPort
-| where count > 1
-```
-
-### 4. Suricata Suspicious C2 Alerts
-```
-index=ids earliest=-1h
-| search signature="*C2*" OR signature="*callback*" OR signature="*malware*"
-| table _time src_ip dest_ip dest_port signature
-```
+- [Outbound Connections to External IPs](../queries/starter/unknown_outbound_connections.md)
+- [PowerShell-Based HTTP/HTTPS Callbacks](../queries/starter/powershell_web_callbacks.md)
+- [Beaconing Behavior](../queries/starter/periodic_beaconing_connections.md)
+- [Suspicious C2 Alerts](../queries/starter/suspicious_c2_alerts.md)
 
 ---
 

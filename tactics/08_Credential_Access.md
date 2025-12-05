@@ -1,12 +1,12 @@
 ---
 tags:
   - ATTACK/CredentialAccess
-  - Sysmon
-  - WindowsSecurity
   - Surface/Process
   - Surface/Registry
   - Surface/File
   - Surface/Identity
+  - Telemetry/Sysmon
+  - Telemetry/WindowsEvent
 ---
 
 # Credential Access (TA0006)
@@ -76,44 +76,10 @@ Password spraying or repeated authentication attempts.
 
 ## Starter Splunk Queries
 
-### 1. LSASS Access Attempts (Sysmon EventCode 10)
-```
-index=sysmon EventCode=10 earliest=-1h
-| search TargetImage="*lsass.exe*"
-| table _time host SourceImage TargetImage GrantedAccess
-```
-Purpose: Detects attempts to access LSASS memory (high-fidelity indicator of dumping).
-
----
-
-### 2. Credential Dump Tools Executed
-```
-index=sysmon EventCode=1 earliest=-1h
-| search Image="*procdump*" OR Image="*mimikatz*" OR CommandLine="*lsass*"
-| table _time host Image ParentImage CommandLine User
-```
-Purpose: Identifies tools commonly used for credential theft.
-
----
-
-### 3. Registry Hive Access
-```
-index=sysmon EventCode=13 earliest=-1h
-| search registry_key_path="*\SAM" OR registry_key_path="*\SYSTEM" OR registry_key_path="*\SECURITY"
-| table _time host Image registry_key_path Details User
-```
-Purpose: Detects attempts to read or export credential-related registry hives.
-
----
-
-### 4. Failed Logon Burst (Brute Force / Spray)
-```
-index=windows EventCode=4625 earliest=-1h
-| stats count by Account_Name IpAddress
-| where count > 5
-| sort - count
-```
-Purpose: Identifies repeated authentication failures indicative of password spray activity.
+- [LSASS Access Attempts](../queries/starter/lsass_access_attempts.md)
+- [Credential Dump Tools Executed](../queries/starter/credential_dump_executed.md)
+- [Registry Hive Access](../queries/starter/registry_hive_access.md)
+- [Failed Logon Burst](../queries/starter/failed_logon_burst.md)
 
 ---
 
@@ -124,7 +90,7 @@ Purpose: Identifies repeated authentication failures indicative of password spra
 - Many credential access tools rename themselves; rely on behavior and access patterns, not filenames.
 
 ### Detection Engineering Tips
-- Combine **EventCode 10** with **EventCode 1** for stronger detection (who accessed LSASS + how).  
+- Combine **EventCode 10** with **EventCode 1** for stronger detection (who accessed LSASS + how). 
 - Correlate failed logons with successful ones to identify credential stuffing.  
 - Alert on LSASS access attempts by processes not in a known-good allow-list (e.g., legitimate AV or EDR tools).
 

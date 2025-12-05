@@ -2,11 +2,11 @@
 tags:
   - ATTACK/Exfiltration
   - Surface/Network
-  - Sysmon
-  - Suricata
-  - pfSense
   - Surface/Process
   - Surface/File
+  - Telemetry/Sysmon
+  - Telemetry/Suricata
+  - Telemetry/pfSense
 ---
 
 # Exfiltration (TA0010)
@@ -75,34 +75,10 @@ Uploading data to cloud services or attacker-controlled web servers.
 
 ## Starter Splunk Queries
 
-### 1. Large Outbound Transfers (Sysmon Network Events)
-```
-index=sysmon EventCode=3 earliest=-1h
-| stats count by DestinationIp DestinationPort Image host
-| sort - count
-```
-
-### 2. HTTP/HTTPS POST Uploads (Suricata)
-```
-index=ids earliest=-1h
-| search signature="*POST*" OR signature="*UPLOAD*" OR signature="*data exfil*"
-| table _time src_ip dest_ip dest_port signature
-```
-
-### 3. PowerShell-Based Upload Commands
-```
-index=powershell earliest=-1h
-| search ScriptBlockText="*Invoke-WebRequest*" AND ScriptBlockText="*POST*"
-       OR ScriptBlockText="*Invoke-RestMethod*"
-| table _time host User ScriptBlockText
-```
-
-### 4. Data Transfer to External IPs
-```
-index=sysmon EventCode=3 earliest=-1h
-| search DestinationIp!="10.10.*"
-| table _time host Image DestinationIp DestinationPort
-```
+- [Large Outbound Transfers](../queries/starter/large_outbound_transfers.md)
+- [HTTP/HTTPS POST Uploads](../queries/starter/http_post_uploads.md)
+- [PowerShell-Based Upload Commands](../queries/starter/powershell_upload_commands.md)
+- [Data Transfer to External IPs](../queries/starter/external_data_transfer.md)
 
 ---
 

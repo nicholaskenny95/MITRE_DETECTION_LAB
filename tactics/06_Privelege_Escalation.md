@@ -1,12 +1,12 @@
 ---
 tags:
   - ATTACK/PrivilegeEscalation
-  - Sysmon
-  - WindowsSecurity
   - Surface/Process
   - Surface/Registry
   - Surface/File
   - Surface/Identity
+  - Telemetry/Sysmon
+  - Telemetry/WindowsEvent
 ---
 
 # Privilege Escalation (TA0004)
@@ -66,42 +66,10 @@ Leveraging services or scheduled tasks configured with elevated permissions.
 
 ## Starter Splunk Queries
 
-### 1. High-Privilege Token Assignment (Windows Security)
-```
-index=windows EventCode=4672 earliest=-1h
-| table _time host SubjectUserName Privileges
-```
-Purpose: Detects users receiving elevated privileges (high-fidelity escalation signal).
-
----
-
-### 2. Suspicious Elevated Process Execution
-```
-index=sysmon EventCode=1 earliest=-1h
-| search IntegrityLevel="High" OR IntegrityLevel="System"
-| table _time host Image ParentImage CommandLine User IntegrityLevel
-```
-Purpose: Highlights unexpectedly elevated processes.
-
----
-
-### 3. Service Configuration Modification (Sysmon Registry)
-```
-index=sysmon EventCode=13 earliest=-1h
-| search registry_key_path="*\Services\*" AND Details="*ImagePath*"
-| table _time host Image registry_key_path Details User
-```
-Purpose: Detects service misconfiguration attempts used for escalation.
-
----
-
-### 4. Execution of Known Escalation Utilities
-```
-index=sysmon EventCode=1 earliest=-1h
-| search Image="*psexec.exe*" OR Image="*runas.exe*" OR CommandLine="*bypass*" 
-| table _time host Image ParentImage CommandLine User
-```
-Purpose: Identifies common tools and methods used to elevate privileges.
+- [High-Privilege Token Assignment](../queries/starter/priveleged_token_assignment.md)
+- [Suspicious Elevated Process Execution](../queries/starter/suspicious_process_execution.md)
+- [Service Configuration Modification](../queries/starter/service_configuration_modification.md)
+- [Execution of Known Escalation Utilities](../queries/starter/escalation_utility_execution.md)
 
 ---
 

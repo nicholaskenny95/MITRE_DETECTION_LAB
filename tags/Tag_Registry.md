@@ -60,32 +60,10 @@ Format: `Surface/<Domain>`
 # 4. Telemetry Source Tags  
 Used only when the detection or analysis uses that telemetry source.
 
-- Sysmon
-- PowerShell
-- WindowsSecurity
-- Suricata
-- pfSense
-
----
-
-# 5. Query Tags  
-Used only in `/queries/`.
-
-Format: `Queries/<Tactic>`
-
-- Queries/Reconnaissance
-- Queries/Resource_Development
-- Queries/Initial_Access
-- Queries/Execution
-- Queries/Persistence
-- Queries/Privilege_Escalation
-- Queries/Defense_Evasion
-- Queries/Credential_Access
-- Queries/Discovery
-- Queries/Lateral_Movement
-- Queries/Collection
-- Queries/Command_and_Control
-- Queries/Exfiltration
-- Queries/Impact
+- Telemetry/Sysmon
+- Telemetry/PowerShell
+- Telemetry/WindowsEvent
+- Telemetry/Suricata
+- Telemetry/pfSense
 
 ---

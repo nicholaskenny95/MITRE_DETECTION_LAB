@@ -3,9 +3,9 @@ tags:
   - Surface/Process
   - Surface/File
   - Surface/Registry
-  - Sysmon
-  - WindowsSecurity
   - ATTACK/Impact
+  - Telemetry/Sysmon
+  - Telemetry/WindowsEvent
 ---
 
 # Impact (TA0040)
@@ -73,35 +73,10 @@ Ransomware-style encryption of user files, often in mass file write operations.
 
 ## Starter Splunk Queries
 
-### 1. Backup/Shadow Copy Deletion
-```
-index=sysmon EventCode=1 earliest=-1h
-| search CommandLine="*vssadmin*" AND CommandLine="*delete*"
-        OR CommandLine="*wmic shadowcopy*"
-| table _time host Image ParentImage CommandLine User
-```
-
-### 2. High-Volume File Modifications (Encryption/Deletion)
-```
-index=sysmon EventCode=11 earliest=-1h
-| stats count by host Image User
-| where count > 100
-| sort - count
-```
-
-### 3. Destructive Utilities Execution
-```
-index=sysmon EventCode=1 earliest=-1h
-| search Image="*cipher.exe*" OR Image="*format.exe*" OR CommandLine="*Remove-Item*"
-| table _time host Image ParentImage CommandLine User
-```
-
-### 4. Ransomware-Like File Extensions
-```
-index=sysmon EventCode=11 earliest=-1h
-| search TargetFilename="*.locked" OR TargetFilename="*.encrypted" OR TargetFilename="*.enc"
-| table _time host Image TargetFilename User
-```
+- [Backup/Shadow Copy Deletion](../queries/starter/backup_copy_deletion.md)
+- [High-Volume File Modifications](../queries/starter/large_file_modifications.md)
+- [Destructive Utilities Execution](../queries/starter/destructive_utilities_execution.md)
+- [Ransomware-Like File Extensions](../queries/starter/ransomware_file_extensions.md)
 
 ---
 

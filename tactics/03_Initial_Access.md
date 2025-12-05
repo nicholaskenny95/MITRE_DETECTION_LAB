@@ -1,12 +1,12 @@
 ---
 tags:
   - ATTACK/InitialAccess
-  - Sysmon
-  - Suricata
-  - WindowsSecurity
   - Surface/Network
   - Surface/Process
   - Surface/Identity
+  - Telemetry/Sysmon
+  - Telemetry/Suricata
+  - Telemetry/WindowsEvent
 ---
 
 # Initial Access (TA0001)
@@ -63,46 +63,10 @@ Authentication to RDP, SMB, VPN, or WinRM using stolen credentials.
 
 ## Starter Splunk Queries
 
-### 1. Office or Browser Triggering Script Execution
-```
-index=sysmon EventCode=1 earliest=-1h
-| search ParentImage="*winword.exe*" OR ParentImage="*excel.exe*" 
-        OR ParentImage="*outlook.exe*" OR ParentImage="*chrome.exe*" 
-        OR ParentImage="*firefox.exe*"
-| table _time host ParentImage Image CommandLine User
-```
-Purpose: Detects phishing payload execution via parent/child anomalies.
-
----
-
-### 2. Suspicious Authentication Activity
-```
-index=windows EventCode=4624 earliest=-1h
-| table _time host Account_Name Logon_Type IpAddress
-```
-Purpose: Logs successful logons which may indicate stolen credential use.
-
----
-
-### 3. Exploit Attempts via IDS (Suricata)
-```
-index=ids earliest=-1h
-| search signature="*exploit*" OR signature="*shellcode*" OR signature="*malicious*"
-| table _time src_ip dest_ip dest_port signature
-```
-Purpose: Identifies network-based exploit attempts against lab systems.
-
----
-
-### 4. Malicious File Download Followed by Execution
-```
-index=sysmon EventCode=3 earliest=-1h
-| search DestinationIp!="10.10.*"
-| join host [_internal]
-```
-(This placeholder ready for further correlation)
-
-Purpose: Highlights external downloads that commonly precede execution.
+- [Office or Browser Triggering Script Execution](execution_following_download.md)
+- [Suspicious Authentication Activity](ids_exploit_attempts.md)
+- [Exploit Attempts via IDS](payload_script_execution.md)
+- [Malicious File Download Followed by Execution](suspicious_authentication_activity.md)
 
 ---
 

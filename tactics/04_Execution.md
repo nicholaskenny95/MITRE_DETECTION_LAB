@@ -1,11 +1,11 @@
 ---
 tags:
   - ATTACK/Execution
-  - Sysmon
-  - PowerShell
   - Surface/Network
   - Surface/File
   - Surface/Process
+  - Telemetry/Sysmon
+  - Telemetry/PowerShell
 ---
 
 # Execution (TA0002)
@@ -60,43 +60,10 @@ User-initiated execution of malicious content, often via documents or downloads.
 
 ## Starter Splunk Queries
 
-### 1. Core Script Interpreter and LOLBin Execution
-```
-index=sysmon EventCode=1 earliest=-30m
-| search Image="*powershell.exe*" OR Image="*cmd.exe*" OR Image="*wscript.exe*" 
-        OR Image="*cscript.exe*" OR Image="*mshta.exe*" OR Image="*rundll32.exe*"
-| table _time host Image ParentImage CommandLine User
-```
-Purpose: Shows the main execution engines often abused by attackers.
-
----
-
-### 2. PowerShell Script Block Logging (If Enabled)
-```
-index=powershell EventCode=4104 earliest=-1h
-| table _time host User ScriptBlockText
-```
-Purpose: Reveals the actual PowerShell content, including malicious logic, even when obfuscated on the command line.
-
----
-
-### 3. Encoded or Obfuscated Command Lines
-```
-index=sysmon EventCode=1 earliest=-1h
-| search CommandLine="*-enc*" OR CommandLine="*EncodedCommand*" OR CommandLine="*Base64*"
-| table _time host Image ParentImage CommandLine User
-```
-Purpose: Targets suspicious use of encoded payloads with PowerShell or CMD.
-
----
-
-### 4. Execution from Suspicious Locations
-```
-index=sysmon EventCode=1 earliest=-1h
-| search Image="*\Temp\*" OR Image="*\AppData\*" OR Image="*\Downloads\*"
-| table _time host Image ParentImage CommandLine User
-```
-Purpose: Identifies binaries or scripts launching from common attacker staging paths.
+- [Encoded or Obfuscated Command Lines](encoded_command_lines.md)
+- [PowerShell Script Block Logging](powershell_script_block_logging.md)
+- [Core Script Interpreter and LOLBin Execution](script_execution_interpreter.md)
+- [Execution from Suspicious Locations](suspicious_location_executions.md)
 
 ---
 

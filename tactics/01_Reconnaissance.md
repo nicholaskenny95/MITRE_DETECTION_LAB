@@ -1,11 +1,11 @@
 ---
 tags:
   - ATTACK/Reconnaissance
-  - Sysmon
-  - Suricata
-  - pfSense
   - Surface/Network
   - Surface/Process
+  - Telemetry/Sysmon
+  - Telemetry/pfSense
+  - Telemetry/Suricata
 ---
 
 # Reconnaissance (TA0043)
@@ -50,36 +50,10 @@ Enumeration of addressing, topology, or host details.
 
 ## Starter Splunk Queries
 
-### 1. Suricata Recon Alerts
-```
-index=ids earliest=-1h
-| stats count by src_ip dest_ip dest_port signature
-| sort - count
-```
-
-### 2. Internal Connection Bursts
-```
-index=network earliest=-1h
-| stats count by src_ip dest_ip dest_port
-| where count > 20
-| sort - count
-```
-
-### 3. Local Recon Tool Execution (Sysmon)
-```
-index=sysmon EventCode=1 earliest=-1h
-| search Image="*nmap*" OR Image="*masscan*" OR Image="*netcat*"
-        OR CommandLine="*scan*" OR CommandLine="*Test-NetConnection*"
-| table _time host Image ParentImage CommandLine User
-```
-
-### 4. Horizontal Target Spread (Sysmon Network Events)
-```
-index=sysmon EventCode=3 earliest=-1h
-| stats dc(DestinationIp) as unique_targets by host, Image
-| where unique_targets > 10
-```
-
+- [Internal Connection Bursts](internal_connection_bursts.md)
+- [Suricata Recon Alerts](suricata_recon_alerts.md)
+- [Local Recon Tool Execution](local_recon_tool_execution.md)
+- [Horizontal Target Spread](horizontal_target_spread.md)
 ## Enhancements
 
 ### Telemetry Notes

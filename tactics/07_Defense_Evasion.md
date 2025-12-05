@@ -1,13 +1,13 @@
 ---
 tags:
   - ATTACK/DefenseEvasion
-  - Sysmon
-  - WindowsSecurity
-  - PowerShell
   - Surface/File
   - Surface/Process
   - Surface/Registry
   - Surface/Network
+  - Telemetry/Sysmon
+  - Telemetry/WindowsEvent
+  - Telemetry/PowerShell
 ---
 
 # Defense Evasion (TA0005)
@@ -75,46 +75,10 @@ Clearing event logs, deleting artifacts, overwriting or renaming files.
 
 ## Starter Splunk Queries
 
-### 1. PowerShell-Based Defense Evasion (ScriptBlock)
-```
-index=powershell earliest=-1h
-| search ScriptBlockText="*Set-MpPreference*" 
-        OR ScriptBlockText="*DisableRealtimeMonitoring*"
-        OR ScriptBlockText="*Add-MpPreference*"
-| table _time host User ScriptBlockText
-```
-Purpose: Detects attempts to disable Defender or security scanning.
-
----
-
-### 2. Log Clearing and Evidence Removal
-```
-index=sysmon EventCode=1 earliest=-1h
-| search CommandLine="*wevtutil*" OR CommandLine="*Clear-EventLog*"
-| table _time host Image CommandLine User
-```
-Purpose: Identifies attempts to clear Windows event logs.
-
----
-
-### 3. Registry Modification for Evasion
-```
-index=sysmon EventCode=13 earliest=-1h
-| search registry_key_path="*Windows Defender*" 
-        OR registry_key_path="*\EventLog\*"
-| table _time host Image registry_key_path Details User
-```
-Purpose: Detects defender or logging policy tampering.
-
----
-
-### 4. Obfuscated or Encoded Execution (Process Creation)
-```
-index=sysmon EventCode=1 earliest=-1h
-| search CommandLine="*-enc*" OR CommandLine="*Base64*" OR CommandLine="*Hidden*"
-| table _time host Image ParentImage CommandLine User
-```
-Purpose: Flags encoding/obfuscation commonly used to hide malicious commands.
+- [Obfuscated or Encoded Execution](../queries/starter/encoded_execution_obfuscation.md)
+- [PowerShell-Based Defense Evasion](../queries/starter/powershell_defense_evasion.md)
+- [Log Clearing and Evidence Removal](../queries/starter/evidence_log_removal.md)
+- [Registry Modification for Evasion](../queries/starter/evasion_registry_modification.md)
 
 ---
 

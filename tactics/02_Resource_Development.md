@@ -1,10 +1,10 @@
 ---
 tags:
   - ATTACK/ResourceDevelopment
-  - Sysmon
-  - pfSense
   - Surface/File
   - Surface/Network
+  - Telemetry/Sysmon
+  - Telemetry/pfSense
 ---
 
 # Resource Development (TA0042)
@@ -59,43 +59,10 @@ External services or hosts used for later access (rarely visible inside lab unle
 
 ## Starter Splunk Queries
 
-### 1. External File Download (Sysmon Network Events)
-```
-index=sysmon EventCode=3 earliest=-1h
-| search DestinationIp!="10.10.*"
-| table _time host Image DestinationIp DestinationPort
-```
-Purpose: Detect outbound connections to non-lab IPs, often used to fetch tooling.
-
----
-
-### 2. File Staging in Download/Temp Paths
-```
-index=sysmon EventCode=11 earliest=-1h
-| search TargetFilename="*\Downloads\*" OR TargetFilename="*\Temp\*"
-| table _time host Image TargetFilename User
-```
-Purpose: Identifies tool staging in common download locations.
-
----
-
-### 3. Archive Extraction or Tool Packaging
-```
-index=sysmon EventCode=11 earliest=-1h
-| search TargetFilename="*.zip" OR TargetFilename="*.7z" OR TargetFilename="*.rar"
-| table _time host Image TargetFilename User
-```
-Purpose: Highlights compressed toolkits or payload packages extracted to disk.
-
----
-
-### 4. Suspicious PowerShell Download Activity
-```
-index=powershell earliest=-1h
-| search ScriptBlockText="*Invoke-WebRequest*" OR ScriptBlockText="*curl*" OR ScriptBlockText="*wget*"
-| table _time host User ScriptBlockText
-```
-Purpose: Detects PowerShell-based download commands commonly used for staging.
+- [File Staging in Download/Temp Paths](file_staging_paths.md)
+- [Archive Extraction or Tool Packaging](suspicious_powershell_download.md)
+- [Suspicious PowerShell Download Activity](external_file_download.md)
+- [External File Download](external_file_download.md)
 
 ---
 

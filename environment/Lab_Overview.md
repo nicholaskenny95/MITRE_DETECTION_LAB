@@ -3,6 +3,7 @@ tags:
 ---
 
 # Lab Environment Overview  
+
 Consistent Reference for All MITRE ATT&CK Simulations
 
 This document provides a standardized reference for the virtual lab environment used for all MITRE ATT&CK simulations executed with Atomic Red Team and analyzed using Splunk.  
@@ -93,31 +94,19 @@ Used for: *Command & Control, Lateral Movement, Exfiltration*
 
 ---
 
-# Index Mapping
+# 4. Host System Specs
 
-| Source                 | Splunk Index |
-|------------------------|--------------|
-| Windows Event Logs     | `index=windows` |
-| Sysmon                 | `index=sysmon` |
-| PowerShell             | `index=powershell` |
-| Suricata IDS           | `index=ids` |
-| pfSense Syslogs        | `index=network` |
+All virtual machines in this detection lab run on a single host system with the following specifications:
 
----
-
-# Log Validation Commands
-
-```
-index=windows    earliest=-5m
-index=sysmon     earliest=-5m
-index=powershell earliest=-5m
-index=network    earliest=-5m
-index=ids        earliest=-5m
-```
+- CPU: AMD Ryzen 5 5600X 6-Core Processor
+- RAM: 32.0 GB
+- Storage: 2 TB SSD WD_BLACK SN850X
+- OS: Windows 10 Home
+- Virtualization Platform: VirtualBox 7.2.4
 
 ---
 
-# 4. Standard Workflow
+# 5. Standard Workflow
 
 1. Select MITRE ATT&CK technique  
 2. Execute test via Atomic Red Team  
@@ -126,10 +115,9 @@ index=ids        earliest=-5m
 5. Refine logic and reduce noise  
 6. Create alert thresholds  
 7. Document findings  
-
 ---
 
-# 5. Execution Context
+# 6. Execution Context
 
 1. All tests initiated from Kali Linux  
 2. PowerShell Core (Kali) or PowerShell 7.x (Windows) used depending on technique  

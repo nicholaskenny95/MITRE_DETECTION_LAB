@@ -1,12 +1,12 @@
 ---
 tags:
   - ATTACK/LateralMovement
-  - Sysmon
-  - WindowsSecurity
-  - Suricata
   - Surface/Network
   - Surface/Process
   - Surface/Identity
+  - Telemetry/Sysmon
+  - Telemetry/WindowsEvent
+  - Telemetry/Suricata
 ---
 
 # Lateral Movement (TA0008)
@@ -68,45 +68,10 @@ Accessing ADMIN$, C$, IPC$ or other internal shares.
 
 ## Starter Splunk Queries
 
-### 1. RDP, SMB, and WinRM Session Attempts (Sysmon Network Events)
-```
-index=sysmon EventCode=3 earliest=-1h
-| search DestinationPort=445 OR DestinationPort=3389 
-        OR DestinationPort=5985 OR DestinationPort=5986
-| table _time host Image DestinationIp DestinationPort
-```
-Purpose: Identifies remote protocols commonly used for lateral movement.
-
----
-
-### 2. Authentication Events for Remote Logons
-```
-index=windows earliest=-1h
-| search EventCode=4624 OR EventCode=4625
-| table _time host Account_Name Logon_Type IpAddress
-```
-Purpose: Finds successful or failed remote logons (LogonType 3 and 10).
-
----
-
-### 3. Remote Execution Tools Launched (Sysmon Process Creation)
-```
-index=sysmon EventCode=1 earliest=-1h
-| search Image="*psexec*" OR Image="*wmic.exe*" 
-        OR CommandLine="*Invoke-Command*" OR CommandLine="*Enter-PSSession*"
-| table _time host Image ParentImage CommandLine User
-```
-Purpose: Detects common remote execution utilities and PowerShell remoting.
-
----
-
-### 4. ADMIN$, C$, and IPC$ Share Access via SMB (If Logged)
-```
-index=windows EventCode=5140 earliest=-1h
-| search Share_Name="\\*ADMIN$" OR Share_Name="\\*C$" OR Share_Name="\\*IPC$"
-| table _time host Share_Name Relative_Target_Name Account_Name
-```
-Purpose: Indicates enumeration or movement using ADMIN$ or similar administrative shares.
+- [RDP, SMB, and WinRM Session Attempts](../queries/starter/remote_session_attempts.md)
+- [Authentication Events for Remote Logons](../queries/starter/remote_authentication_events.md)
+- [Remote Execution Tools Launched](../queries/starter/remote_execution_tools.md)
+- [ADMIN$, C$, and IPC$ Share Access via SMB](../queries/starter/admin_share_enumeration.md)
 
 ---
 
