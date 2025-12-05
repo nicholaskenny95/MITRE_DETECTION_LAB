@@ -1,0 +1,125 @@
+---
+tags:
+  - ATTACK/LateralMovement
+  - Sysmon
+  - WindowsSecurity
+  - Suricata
+  - Surface/Network
+  - Surface/Process
+  - Surface/Identity
+---
+
+# Lateral Movement (TA0008)
+
+Lateral Movement techniques allow adversaries to move from one compromised host to another.  
+In your lab, this frequently appears as **WinRM**, **SMB/ADMIN$ access**, **remote service creation**, **RDP connections**, and **PowerShell Remoting**.
+
+---
+
+## Common Sub-Techniques
+
+**T1021 – Remote Services**  
+SMB, WinRM, RDP, and other remote admin protocols used for movement.
+
+**T1027 – Pass the Hash / Pass the Ticket**  
+Authentication using stolen credential material.
+
+**T1135 – Network Share Discovery (Often precursor)**  
+Accessing ADMIN$, C$, IPC$ or other internal shares.
+
+---
+
+## Expected Surfaces
+
+**Network** – connections to SMB, WinRM, RDP, remote service ports  
+**Identity** – authentication attempts, failed and successful  
+**Process** – remote execution tools and host-level execution events
+
+---
+
+## What to Look For
+
+### Network Indicators
+- Connections on:
+  - **445 (SMB)**
+  - **5985/5986 (WinRM)**
+  - **3389 (RDP)**
+  - **135, 139, 49152+ (WMI/DCOM)**  
+- Suricata alerts for SMB/WinRM anomalies  
+- Lateral movement originating from non-admin workstations
+
+### Identity Indicators
+- **4624 LogonType 3** (network) from unusual hosts  
+- **4624 LogonType 10** (RDP) from unexpected sources  
+- **4625 failed attempts** followed by a successful logon
+
+### Process Indicators
+- Commands like:
+  - `psexec.exe`, `wmic.exe`, `winrm.vbs`
+  - PowerShell remoting: `Enter-PSSession`, `Invoke-Command`  
+- Creation of remote services (paired with privilege escalation)
+
+### Behavioral Patterns
+- Credential Access → Lateral Movement → Execution on new host  
+- Repeated authentication attempts across several hosts  
+- Remote execution followed by suspicious child processes
+
+---
+
+## Starter Splunk Queries
+
+### 1. RDP, SMB, and WinRM Session Attempts (Sysmon Network Events)
+```
+index=sysmon EventCode=3 earliest=-1h
+| search DestinationPort=445 OR DestinationPort=3389 
+        OR DestinationPort=5985 OR DestinationPort=5986
+| table _time host Image DestinationIp DestinationPort
+```
+Purpose: Identifies remote protocols commonly used for lateral movement.
+
+---
+
+### 2. Authentication Events for Remote Logons
+```
+index=windows earliest=-1h
+| search EventCode=4624 OR EventCode=4625
+| table _time host Account_Name Logon_Type IpAddress
+```
+Purpose: Finds successful or failed remote logons (LogonType 3 and 10).
+
+---
+
+### 3. Remote Execution Tools Launched (Sysmon Process Creation)
+```
+index=sysmon EventCode=1 earliest=-1h
+| search Image="*psexec*" OR Image="*wmic.exe*" 
+        OR CommandLine="*Invoke-Command*" OR CommandLine="*Enter-PSSession*"
+| table _time host Image ParentImage CommandLine User
+```
+Purpose: Detects common remote execution utilities and PowerShell remoting.
+
+---
+
+### 4. ADMIN$, C$, and IPC$ Share Access via SMB (If Logged)
+```
+index=windows EventCode=5140 earliest=-1h
+| search Share_Name="\\*ADMIN$" OR Share_Name="\\*C$" OR Share_Name="\\*IPC$"
+| table _time host Share_Name Relative_Target_Name Account_Name
+```
+Purpose: Indicates enumeration or movement using ADMIN$ or similar administrative shares.
+
+---
+
+## Enhancements
+
+### Telemetry Notes
+- Sysmon EventCode 3 visibility across hosts is essential for spotting lateral network activity.  
+- RDP logons use EventCode 4624 LogonType 10; SMB/WinRM use LogonType 3.  
+- Administrative shares (ADMIN$, C$, IPC$) access is highly suspicious on workstations.
+
+### Detection Engineering Tips
+- Correlate remote logon → remote execution tool → process creation on the target host.  
+- Build rules for unexpected east-west connections between workstations.  
+- Look for movement immediately after credential dumping on the origin host.
+
+---
