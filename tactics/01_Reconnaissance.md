@@ -49,10 +49,10 @@ Enumeration of addressing, topology, or host details.
 
 ## Starter Splunk Queries
 
-- [Internal Connection Bursts](internal_connection_bursts.md)
-- [Suricata Recon Alerts](suricata_recon_alerts.md)
-- [Local Recon Tool Execution](local_recon_tool_execution.md)
-- [Horizontal Target Spread](horizontal_target_spread.md)
+- [Internal Connection Bursts](../queries/starter/internal_connection_bursts.md)
+- [Suricata Recon Alerts](../queries/starter/suricata_recon_alerts.md)
+- [Local Recon Tool Execution](../queries/starter/local_recon_tool_execution.md)
+- [Horizontal Target Spread](../queries/starter/horizontal_target_spread.md)
 ## Enhancements
 
 ### Telemetry Notes

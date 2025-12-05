@@ -57,10 +57,10 @@ External services or hosts used for later access (rarely visible inside lab unle
 
 ## Starter Splunk Queries
 
-- [File Staging in Download/Temp Paths](file_staging_paths.md)
-- [Archive Extraction or Tool Packaging](suspicious_powershell_download.md)
-- [Suspicious PowerShell Download Activity](external_file_download.md)
-- [External File Download](external_file_download.md)
+- [File Staging in Download/Temp Paths](../queries/starter/file_staging_paths.md)
+- [Archive Extraction or Tool Packaging](../queries/starter/suspicious_powershell_download.md)
+- [Suspicious PowerShell Download Activity](../queries/starter/external_file_download.md)
+- [External File Download](../queries/starter/external_file_download.md)
 
 ---
 

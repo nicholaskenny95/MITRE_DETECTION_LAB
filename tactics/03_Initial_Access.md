@@ -61,10 +61,10 @@ Authentication to RDP, SMB, VPN, or WinRM using stolen credentials.
 
 ## Starter Splunk Queries
 
-- [Office or Browser Triggering Script Execution](execution_following_download.md)
-- [Suspicious Authentication Activity](ids_exploit_attempts.md)
-- [Exploit Attempts via IDS](payload_script_execution.md)
-- [Malicious File Download Followed by Execution](suspicious_authentication_activity.md)
+- [Office or Browser Triggering Script Execution](../queries/starter/execution_following_download.md)
+- [Suspicious Authentication Activity](../queries/starter/ids_exploit_attempts.md)
+- [Exploit Attempts via IDS](../queries/starter/payload_script_execution.md)
+- [Malicious File Download Followed by Execution](../queries/starter/suspicious_authentication_activity.md)
 
 ---
 

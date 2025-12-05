@@ -58,10 +58,10 @@ User-initiated execution of malicious content, often via documents or downloads.
 
 ## Starter Splunk Queries
 
-- [Encoded or Obfuscated Command Lines](encoded_command_lines.md)
-- [PowerShell Script Block Logging](powershell_script_block_logging.md)
-- [Core Script Interpreter and LOLBin Execution](script_execution_interpreter.md)
-- [Execution from Suspicious Locations](suspicious_location_executions.md)
+- [Encoded or Obfuscated Command Lines](../queries/starter/encoded_command_lines.md)
+- [PowerShell Script Block Logging](../queries/starter/powershell_script_block_logging.md)
+- [Core Script Interpreter and LOLBin Execution](../queries/starter/script_execution_interpreter.md)
+- [Execution from Suspicious Locations](../queries/starter/suspicious_location_executions.md)
 
 ---
 
