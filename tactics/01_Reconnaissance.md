@@ -7,10 +7,9 @@ tags:
   - Telemetry/pfSense
   - Telemetry/Suricata
 ---
-
 # Reconnaissance (TA0043)
 
-Adversary activity focused on gathering information about the target environment before deeper intrusion. Often noisy on the network but quiet on hosts unless internal tools are executed.
+Reconnaissance involves adversaries gathering information, either actively or passively, that helps them plan future operations. This can include details about the organization, infrastructure, or personnel, which can later be used for tactics like gaining initial access, prioritizing post-compromise actions, or guiding further reconnaissance efforts.
 
 ## Common Sub-Techniques
 

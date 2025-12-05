@@ -8,11 +8,9 @@ tags:
   - Telemetry/Suricata
   - Telemetry/WindowsEvent
 ---
-
 # Initial Access (TA0001)
 
-Initial Access covers techniques that allow adversaries to gain a foothold inside the environment.  
-In a lab, this typically appears as **malicious document execution**, **remote authentication**, or **exploit traffic**.
+Initial Access involves adversaries using various methods to enter a network, such as spearphishing or exploiting vulnerabilities in public-facing servers. Once inside, they may establish persistent access (e.g. valid accounts, remote services) or face limited access (e.g. changing passwords).
 
 ---
 

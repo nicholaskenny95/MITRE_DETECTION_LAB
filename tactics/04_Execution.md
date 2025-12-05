@@ -7,11 +7,9 @@ tags:
   - Telemetry/Sysmon
   - Telemetry/PowerShell
 ---
-
 # Execution (TA0002)
 
-Execution covers techniques that run adversary-controlled code on a system.  
-In this lab, this primarily appears as **script interpreters**, **LOLBin abuse**, and **malicious command lines** on Windows endpoints.
+Execution involves techniques that allow adversaries to run malicious code on local or remote systems. This often works in conjunction with other tactics, like exploring the network or stealing data. For example, an adversary might use a remote access tool to run a PowerShell script for system discovery.
 
 ---
 

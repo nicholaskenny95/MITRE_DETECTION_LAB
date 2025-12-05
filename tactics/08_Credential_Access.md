@@ -8,11 +8,9 @@ tags:
   - Telemetry/Sysmon
   - Telemetry/WindowsEvent
 ---
-
 # Credential Access (TA0006)
 
-Credential Access techniques allow adversaries to steal, dump, or harvest authentication material.  
-In your lab, this frequently appears as **LSASS access**, **hash dumping**, **SAM hive theft**, **credential extraction tools**, or **network-based credential misuse**.
+Credential Access involves techniques used by adversaries to steal account credentials, such as usernames and passwords. Methods include keylogging or credential dumping. Gaining access to legitimate credentials allows adversaries to move more freely through systems, remain undetected, and create additional accounts to support their objectives.
 
 ---
 

@@ -6,11 +6,9 @@ tags:
   - Telemetry/Sysmon
   - Telemetry/pfSense
 ---
-
 # Resource Development (TA0042)
 
-Adversaries prepare infrastructure, tools, and capabilities prior to gaining access.  
-Most Resource Development occurs **outside** the target environment, but some actions leave traces inside your lab (tool downloads, staging, packaging).
+Resource Development is when adversaries create, buy, or steal the tools and infrastructure they need for their operations. This can include things like domains, accounts, or capabilities, which they later use for other stages of an attack, such as command and control, phishing for initial access, or using stolen certificates to evade defenses.
 
 ---
 

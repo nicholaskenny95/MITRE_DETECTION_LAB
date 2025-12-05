@@ -8,11 +8,9 @@ tags:
   - Telemetry/Sysmon
   - Telemetry/WindowsEvent
 ---
-
 # Privilege Escalation (TA0004)
 
-Privilege Escalation techniques allow adversaries to gain higher-level permissions, often enabling full system compromise.  
-In your lab, this commonly appears through **token manipulation**, **misconfigured services**, **UAC bypass**, and **credentialed execution**.
+Privilege Escalation involves techniques that adversaries use to gain higher-level permissions on a system or network. While they may start with limited access, they often need elevated privileges to fully carry out their objectives. This can include exploiting system weaknesses, misconfigurations, or vulnerabilities to achieve access such as system/root level, local administrator, or specialized accounts with admin-like access. These techniques often overlap with Persistence, as elevated access may be used to maintain foothold on the system.
 
 ---
 

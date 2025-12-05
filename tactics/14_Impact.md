@@ -7,11 +7,9 @@ tags:
   - Telemetry/Sysmon
   - Telemetry/WindowsEvent
 ---
-
 # Impact (TA0040)
 
-Impact techniques are used by adversaries to disrupt availability, compromise integrity, or destroy data.  
-In your lab environment, Impact typically appears as **data destruction**, **service interruption**, **inhibiting recovery**, or **ransomware-style encryption behavior**.
+Impact involves techniques adversaries use to disrupt systems, compromise data integrity, or interfere with business operations. This can include destroying or tampering with data, or subtly altering business processes to benefit the adversary’s goals. These actions may serve as part of their broader objectives or provide cover for other breaches, like stealing confidential information.
 
 ---
 

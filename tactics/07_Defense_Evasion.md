@@ -9,11 +9,9 @@ tags:
   - Telemetry/WindowsEvent
   - Telemetry/PowerShell
 ---
-
 # Defense Evasion (TA0005)
 
-Defense Evasion techniques allow adversaries to conceal their activity, disable security controls, remove evidence, or blend into normal system behavior.  
-In this lab, Defense Evasion is most visible through **PowerShell misuse**, **registry tampering**, **log clearing**, **LOLBin abuse**, and **security control modification**.
+Defense Evasion involves techniques that adversaries use to avoid detection during their attack. This can include disabling security software, obfuscating or encrypting data, and hiding malware by using trusted processes. Some techniques from other tactics are also listed here if they help bypass defenses.
 
 ---
 

@@ -1,14 +1,16 @@
 # MITRE ATT&CK Detection Lab  
 
-This repository documents a complete, end-to-end detection engineering workflow built on the MITRE ATT&CK framework.  
-It includes a fully configured Active Directory lab, Atomic Red Team simulations, Splunk detections, and analysis notes for each tactic.
+This repository serves as a collection of MITRE ATT&CK–based lab reports created from a custom detection engineering environment. Each report walks through a single technique, from execution to reviewing logs, identifying detection opportunities, and documenting the results.
 
-This project demonstrates:
-- Adversary emulation using Atomic Red Team  
-- Detection development in Splunk  
-- Windows + Sysmon telemetry analysis  
-- Network visibility via pfSense and Suricata IDS  
-- Documentation aligned with MITRE ATT&CK
+The environment supporting these reports includes an Active Directory domain, Splunk with Sysmon logging, pfSense, and Suricata, providing both host-level and network-level visibility.
+
+What this project highlights:
+
+- Running controlled attack simulations with Atomic Red Team
+- Investigating the resulting telemetry in Splunk
+- Understanding Windows and Sysmon event patterns
+- Observing network activity through Suricata and pfSense
+- Producing clear, MITRE-aligned documentation for each technique
 
 ---
 
@@ -16,10 +18,12 @@ This project demonstrates:
 
 ```
 /environment/        → Lab environment reference  
-/tactics/            → 14 MITRE ATT&CK tactic files  
 /playbooks/          → Detection playbook index  
-/queries/            → Starter and advanced SPL queries  
+/queries/            → Starter SPL queries  
 /reports/            → Technique-specific lab reports  
+/tactics/            → MITRE ATT&CK tactic files 
+/tags/               → Tagging reference
+/templates/          → Re-usable documents
 README.md            → Repository overview  
 ```
 
@@ -32,7 +36,7 @@ A consistent reference describing:
 - Network layout  
 - Virtual machine roles  
 - Logging pipeline  
-- Index mapping  
+- Host system specs
 - Standard workflow  
 - Execution context  
 
@@ -54,40 +58,18 @@ Used uniformly across all lab reports:
 
 ---
 
-## How to Navigate This Repository
-
-### If you're reviewing my detection capabilities:
-Start with `/tactics/` to view threat behavior and detection logic.
-
-### If you want to see hands-on execution:
-Open `/reports/` for documented lab simulations per technique.
-
-### If you're interested in lab setup:
-Refer to `/environment/Environment.md`.
-
----
-
-## Technology Stack
-
-- Splunk (SIEM & detections)  
-- Sysmon (deep Windows telemetry)  
-- Windows Event Logs  
-- PowerShell Script Block Logging  
-- pfSense (routing + firewall logs)  
-- Suricata IDS (network threat detection)  
-- Atomic Red Team (execution framework)
-
----
-
 ## About This Project
 
-This portfolio demonstrates real-world security engineering skills:
-- Attack emulation  
-- Threat detection  
-- Log analysis  
-- Adversary behavior understanding  
-- Structured documentation and reporting  
+This project is designed to provide hands-on experience in a simulated business environment. By using Atomic Red Team to generate real-world security scenarios, the lab allows me to practice detecting and analyzing potential threats with Splunk SIEM.
 
+My goals include:
+- Building detection skills with real-world data
+- Improving log analysis and problem-solving abilities
+- Gaining experience with enterprise-level security tools and processes
+- Creating an open resource for others interested in cybersecurity
+
+This project is part of my journey into the cybersecurity field, where I’m committed to developing my skills and demonstrating my dedication to learning and growth in a competitive industry.
+ 
 ---
 
 ## Contact  

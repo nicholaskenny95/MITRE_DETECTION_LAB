@@ -6,11 +6,9 @@ tags:
   - Telemetry/Sysmon
   - Telemetry/WindowsEvent
 ---
-
 # Discovery (TA0007)
 
-Discovery techniques help adversaries learn about the environment after gaining a foothold.  
-In your lab, this most often appears as **Windows built-in enumeration commands**, **PowerShell discovery**, and **network probing**.
+Discovery involves techniques adversaries use to learn about a system and its internal network. This helps them understand the environment, see what they can access or control, and decide their next steps. They often rely on built‑in operating system tools to gather this information after gaining initial access.
 
 ---
 

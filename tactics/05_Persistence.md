@@ -7,11 +7,9 @@ tags:
   - Telemetry/Sysmon
   - Telemetry/WindowsEvent
 ---
-
 # Persistence (TA0003)
 
-Persistence techniques allow adversaries to maintain access across reboots, credential changes, and system restarts.  
-In your lab, persistence most commonly appears as **registry autoruns**, **startup folder modifications**, **malicious services**, or **scheduled tasks**.
+Persistence involves techniques that help adversaries maintain access to systems, even after restarts, credential changes, or other disruptions. This can include actions like hijacking legitimate code or adding malicious startup scripts to keep their foothold intact.
 
 ---
 

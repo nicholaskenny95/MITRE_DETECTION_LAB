@@ -10,8 +10,7 @@ tags:
 
 # Command and Control (TA0011)
 
-Command and Control (C2) techniques enable adversaries to communicate with and remotely control compromised systems.  
-In your lab, C2 commonly appears as **PowerShell-based callbacks**, **HTTP/HTTPS beacons**, **encoded commands**, and **unexpected outbound network connections**.
+Command and Control involves techniques adversaries use to communicate with and control compromised systems inside a network. They often try to blend in with normal traffic to avoid detection, using different methods depending on the network’s structure and defenses.
 
 ---
 

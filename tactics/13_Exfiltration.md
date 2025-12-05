@@ -8,11 +8,9 @@ tags:
   - Telemetry/Suricata
   - Telemetry/pfSense
 ---
-
 # Exfiltration (TA0010)
 
-Exfiltration techniques involve adversaries removing collected data from the environment.  
-In your lab, this typically appears as **outbound file transfers**, **HTTP/HTTPS uploads**, **DNS tunneling**, **encrypted exfil**, or **copying data to remote shares**.
+Exfiltration involves techniques adversaries use to steal data from a network. After collecting the data, they often package it using compression or encryption to avoid detection. Data is typically transferred over the command and control channel or another method, sometimes with size limits to evade monitoring.
 
 ---
 

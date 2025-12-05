@@ -8,11 +8,9 @@ tags:
   - Telemetry/WindowsEvent
   - Telemetry/Suricata
 ---
-
 # Lateral Movement (TA0008)
 
-Lateral Movement techniques allow adversaries to move from one compromised host to another.  
-In your lab, this frequently appears as **WinRM**, **SMB/ADMIN$ access**, **remote service creation**, **RDP connections**, and **PowerShell Remoting**.
+Lateral Movement involves techniques that allow adversaries to move through a network and control remote systems. To achieve their objectives, they often explore the network, find their target, and then pivot through other systems or accounts. This can be done using remote access tools they install or by leveraging legitimate credentials and built-in network tools, which can be more discreet.
 
 ---
 

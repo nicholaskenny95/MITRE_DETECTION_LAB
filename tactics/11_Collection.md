@@ -7,11 +7,9 @@ tags:
   - Telemetry/Sysmon
   - Telemetry/WindowsEvent
 ---
-
 # Collection (TA0009)
 
-Collection techniques involve gathering data prior to exfiltration.  
-In your lab, this commonly appears as file staging, archive creation, and copying data from user or shared directories.
+Collection involves techniques adversaries use to gather information relevant to their goals. After collecting data, they may steal it or use it to learn more about the environment. Common targets include files, browsers, audio, video, and email, and methods often involve capturing screenshots, keystrokes, or other user activity.
 
 ---
 
