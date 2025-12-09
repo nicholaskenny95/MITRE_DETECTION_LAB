@@ -74,10 +74,10 @@ Password spraying or repeated authentication attempts.
 
 ## Starter Splunk Queries
 
-- [LSASS Access Attempts](../queries/starter/lsass_access_attempts.md)
-- [Credential Dump Tools Executed](../queries/starter/credential_dump_executed.md)
-- [Registry Hive Access](../queries/starter/registry_hive_access.md)
-- [Failed Logon Burst](../queries/starter/failed_logon_burst.md)
+- [LSASS Access Attempts](lsass_access_attempts.md)
+- [Credential Dump Tools Executed](credential_dump_executed.md)
+- [Registry Hive Access](registry_hive_access.md)
+- [Failed Logon Burst](failed_logon_burst.md)
 
 ---
 

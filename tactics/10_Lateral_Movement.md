@@ -66,10 +66,10 @@ Accessing ADMIN$, C$, IPC$ or other internal shares.
 
 ## Starter Splunk Queries
 
-- [RDP, SMB, and WinRM Session Attempts](../queries/starter/remote_session_attempts.md)
-- [Authentication Events for Remote Logons](../queries/starter/remote_authentication_events.md)
-- [Remote Execution Tools Launched](../queries/starter/remote_execution_tools.md)
-- [ADMIN$, C$, and IPC$ Share Access via SMB](../queries/starter/admin_share_enumeration.md)
+- [RDP, SMB, and WinRM Session Attempts](remote_session_attempts.md)
+- [Authentication Events for Remote Logons](remote_authentication_events.md)
+- [Remote Execution Tools Launched](remote_execution_tools.md)
+- [ADMIN$, C$, and IPC$ Share Access via SMB](admin_share_enumeration.md)
 
 ---
 

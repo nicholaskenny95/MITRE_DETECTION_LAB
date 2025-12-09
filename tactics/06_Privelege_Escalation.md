@@ -64,10 +64,10 @@ Leveraging services or scheduled tasks configured with elevated permissions.
 
 ## Starter Splunk Queries
 
-- [High-Privilege Token Assignment](../queries/starter/priveleged_token_assignment.md)
-- [Suspicious Elevated Process Execution](../queries/starter/suspicious_process_execution.md)
-- [Service Configuration Modification](../queries/starter/service_configuration_modification.md)
-- [Execution of Known Escalation Utilities](../queries/starter/escalation_utility_execution.md)
+- [High-Privilege Token Assignment](priveleged_token_assignment.md)
+- [Suspicious Elevated Process Execution](suspicious_process_execution.md)
+- [Service Configuration Modification](service_configuration_modification.md)
+- [Execution of Known Escalation Utilities](escalation_utility_execution.md)
 
 ---
 

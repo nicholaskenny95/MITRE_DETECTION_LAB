@@ -63,10 +63,10 @@ Copying data from local file systems (Documents, Desktop, Downloads, application
 
 ## Starter Splunk Queries
 
-- [Archive Creation Detected](../queries/starter/archive_creation.md)
-- [High-Volume File Writes by a Single Process](../queries/starter/process_file_writes.md)
-- [PowerShell-Based File Enumeration and Copy](../queries/starter/powershell_file_enumeration.md)
-- [Access to Common User Data Locations](../queries/starter/access_user_data.md)
+- [Archive Creation Detected](archive_creation.md)
+- [High-Volume File Writes by a Single Process](process_file_writes.md)
+- [PowerShell-Based File Enumeration and Copy](powershell_file_enumeration.md)
+- [Access to Common User Data Locations](access_user_data.md)
 
 ---
 

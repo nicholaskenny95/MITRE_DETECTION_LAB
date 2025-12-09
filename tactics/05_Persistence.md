@@ -64,10 +64,10 @@ Abusing Windows services or installing new ones pointing to attacker binaries.
 
 ## Starter Splunk Queries
 
-- [Registry Run Keys](../queries/starter/registry_run_keys.md)
-- [Startup Folder Modifications](../queries/starter/startup_folder_modifications.md)
-- [Windows Service Creation](../queries/starter/windows_service_creation.md)
-- [Scheduled Tasks Created](../queries/starter/scheduled_tasks_created.md)
+- [Registry Run Keys](registry_run_keys.md)
+- [Startup Folder Modifications](startup_folder_modifications.md)
+- [Windows Service Creation](windows_service_creation.md)
+- [Scheduled Tasks Created](scheduled_tasks_created.md)
 
 ---
 

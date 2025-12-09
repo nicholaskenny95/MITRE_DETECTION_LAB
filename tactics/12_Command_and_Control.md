@@ -66,10 +66,10 @@ Sending tools/payloads over the active C2 channel.
 
 ## Starter Splunk Queries
 
-- [Outbound Connections to External IPs](../queries/starter/unknown_outbound_connections.md)
-- [PowerShell-Based HTTP/HTTPS Callbacks](../queries/starter/powershell_web_callbacks.md)
-- [Beaconing Behavior](../queries/starter/periodic_beaconing_connections.md)
-- [Suspicious C2 Alerts](../queries/starter/suspicious_c2_alerts.md)
+- [Outbound Connections to External IPs](unknown_outbound_connections.md)
+- [PowerShell-Based HTTP/HTTPS Callbacks](powershell_web_callbacks.md)
+- [Beaconing Behavior](periodic_beaconing_connections.md)
+- [Suspicious C2 Alerts](suspicious_c2_alerts.md)
 
 ---
 

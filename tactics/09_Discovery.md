@@ -60,10 +60,10 @@ Listing network connections, ports, and sessions on the endpoint.
 
 ## Starter Splunk Queries
 
-- [Classic Windows Discovery Commands](../queries/starter/windows_discovery_commands.md)
-- [PowerShell Discovery Activity](../queries/starter/powershell_discovery_activity.md)
-- [Internal Host Enumeration](../queries/starter/internal_host_enumeration.md)
-- [Domain Controller and Trust Enumeration](../queries/starter/domain_controller_enumeration.md)
+- [Classic Windows Discovery Commands](windows_discovery_commands.md)
+- [PowerShell Discovery Activity](powershell_discovery_activity.md)
+- [Internal Host Enumeration](internal_host_enumeration.md)
+- [Domain Controller and Trust Enumeration](domain_controller_enumeration.md)
 
 ---
 

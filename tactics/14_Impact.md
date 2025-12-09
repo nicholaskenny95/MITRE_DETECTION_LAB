@@ -71,10 +71,10 @@ Ransomware-style encryption of user files, often in mass file write operations.
 
 ## Starter Splunk Queries
 
-- [Backup/Shadow Copy Deletion](../queries/starter/backup_copy_deletion.md)
-- [High-Volume File Modifications](../queries/starter/large_file_modifications.md)
-- [Destructive Utilities Execution](../queries/starter/destructive_utilities_execution.md)
-- [Ransomware-Like File Extensions](../queries/starter/ransomware_file_extensions.md)
+- [Backup/Shadow Copy Deletion](backup_copy_deletion.md)
+- [High-Volume File Modifications](large_file_modifications.md)
+- [Destructive Utilities Execution](destructive_utilities_execution.md)
+- [Ransomware-Like File Extensions](ransomware_file_extensions.md)
 
 ---
 

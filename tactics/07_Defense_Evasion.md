@@ -73,10 +73,10 @@ Clearing event logs, deleting artifacts, overwriting or renaming files.
 
 ## Starter Splunk Queries
 
-- [Obfuscated or Encoded Execution](../queries/starter/encoded_execution_obfuscation.md)
-- [PowerShell-Based Defense Evasion](../queries/starter/powershell_defense_evasion.md)
-- [Log Clearing and Evidence Removal](../queries/starter/evidence_log_removal.md)
-- [Registry Modification for Evasion](../queries/starter/evasion_registry_modification.md)
+- [Obfuscated or Encoded Execution](encoded_execution_obfuscation.md)
+- [PowerShell-Based Defense Evasion](powershell_defense_evasion.md)
+- [Log Clearing and Evidence Removal](evidence_log_removal.md)
+- [Registry Modification for Evasion](evasion_registry_modification.md)
 
 ---
 

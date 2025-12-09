@@ -73,10 +73,10 @@ Uploading data to cloud services or attacker-controlled web servers.
 
 ## Starter Splunk Queries
 
-- [Large Outbound Transfers](../queries/starter/large_outbound_transfers.md)
-- [HTTP/HTTPS POST Uploads](../queries/starter/http_post_uploads.md)
-- [PowerShell-Based Upload Commands](../queries/starter/powershell_upload_commands.md)
-- [Data Transfer to External IPs](../queries/starter/external_data_transfer.md)
+- [Large Outbound Transfers](large_outbound_transfers.md)
+- [HTTP/HTTPS POST Uploads](http_post_uploads.md)
+- [PowerShell-Based Upload Commands](powershell_upload_commands.md)
+- [Data Transfer to External IPs](external_data_transfer.md)
 
 ---
 
